@@ -205,7 +205,6 @@ namespace LinqConsoleApp
                           Zawod = emp.Job
                       };
 
-            Console.WriteLine(res);
 
 
             //2. Lambda and Extension methods
@@ -216,7 +215,14 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad2()
         {
-            
+            var res = Emps.Where(emp => emp.Job.Equals("Frontend programmer") && emp.Salary > 1000)
+                      .OrderByDescending(emp => emp.Ename);
+
+            foreach(var i in res)
+            {
+                Console.WriteLine(i.Ename);
+            }
+
 
         }
 
@@ -225,7 +231,8 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad3()
         {
-          
+            var res = Emps.Max(emp => emp.Salary);
+
         }
 
         /// <summary>
@@ -233,6 +240,13 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad4()
         {
+            var res = Emps.Where(emp => emp.Salary == Emps.Max(s => s.Salary));
+
+            foreach (var i in res)
+            {
+                Console.WriteLine(i.Ename);
+            }
+
 
         }
 
@@ -241,6 +255,7 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad5()
         {
+            var res = Emps.Select(emp => new { Nazwisko = emp.Ename, Praca = emp.Job });
 
         }
 
@@ -251,7 +266,12 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad6()
         {
-
+            var res = Emps.Join(Depts, emp => emp.Deptno, dept => dept.Deptno, (emp, dept) => new
+            {
+                emp.Ename,
+                emp.Job,
+                dept.Dname
+            });
         }
 
         /// <summary>
@@ -259,7 +279,10 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad7()
         {
-
+            var res = Emps.GroupBy(emp => emp.Job)
+                          .Select(group => new 
+                          { Praca = group.Key,
+                              LiczbaPrac = group.Count() });
         }
 
         /// <summary>
@@ -268,6 +291,7 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad8()
         {
+            var res = Emps.Any(Emp => Emp.Job == "Backend programmer");
 
         }
 
@@ -277,6 +301,7 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad9()
         {
+            var res = Emps.Where(emp => emp.Job.Equals("Frontend programmer")).OrderByDescending(emp => emp.HireDate).First();
 
         }
 
@@ -287,12 +312,36 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad10Button_Click()
         {
+            var anon = new
+            {
+                Ename = "Brak wartości",
+                Job = (string)null,
+                Hiredate = (string)null
+            };
+            var list = new List<object>
+            {
+                anon
+            };
+            var res10 = (from emp in Emps
+                         select new
+                         {
+                             emp.Ename,
+                             emp.Job,
+                             emp.HireDate
+                         }).Union(list);
+
+            var result10 = Emps.Select(emp => new {
+                emp.Ename,
+                emp.Job,
+                emp.HireDate
+            }).Union(list);
 
         }
 
         //Znajdź pracownika z najwyższą pensją wykorzystując metodę Aggregate()
         public void Przyklad11()
         {
+            var result = Emps.Aggregate((emp1, emp2) => emp1.Salary > emp2.Salary ? emp1 : emp2);
 
         }
 
@@ -300,6 +349,7 @@ namespace LinqConsoleApp
         //typu CROSS JOIN
         public void Przyklad12()
         {
+            var res = Emps.SelectMany(emp => Depts, (emp, d) => new { Emp = emp, Dept = d });
 
         }
     }

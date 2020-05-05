@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CircaSurvive\\Documents\\PJATK\\APBD\\Zajęcia 9\\LinqConsoleApp\\LinqConsoleApp\\LinqConsoleApp.csproj",
+      "projectUniqueName": "C:\\Users\\CircaSurvive\\Source\\Repos\\s18891\\cw-9\\LinqConsoleApp\\LinqConsoleApp.csproj",
       "projectName": "LinqConsoleApp",
-      "projectPath": "C:\\Users\\CircaSurvive\\Documents\\PJATK\\APBD\\Zajęcia 9\\LinqConsoleApp\\LinqConsoleApp\\LinqConsoleApp.csproj",
+      "projectPath": "C:\\Users\\CircaSurvive\\Source\\Repos\\s18891\\cw-9\\LinqConsoleApp\\LinqConsoleApp.csproj",
       "packagesPath": "C:\\Users\\CircaSurvive\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CircaSurvive\\Documents\\PJATK\\APBD\\Zajęcia 9\\LinqConsoleApp\\LinqConsoleApp\\obj\\",
+      "outputPath": "C:\\Users\\CircaSurvive\\Source\\Repos\\s18891\\cw-9\\LinqConsoleApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
